@@ -1,0 +1,37 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Provisioning IAM Users with Permissions
+
+Resources:
+  myUserA:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: xxx.xxx # Project Manager
+      LoginProfile: 
+        Password: xxxx # password removed
+        PasswordResetRequired: true # make this user to set a new password on next sign-in
+      Path: '/'
+      ManagedPolicyArns: # list of ARNs of IAM managed policies that you want to attach to the user
+        - arn:aws:iam::aws:policy/AdministratorAccess # provides administrator access to AWS account
+
+     
+  myUserB:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: xxx.xxx # Developer
+      LoginProfile: 
+        Password: pxxxx # password removed
+        PasswordResetRequired: true # make this user to set a new password on next sign-in
+      Path: '/'
+      ManagedPolicyArns: # list of ARNs of IAM managed policies that you want to attach to the user
+        - arn:aws:iam::aws:policy/AmazonEC2FullAccess # provides full access to Amazon EC2 via the AWS Management Console
+      
+  myUserC:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: xxx.xxx  # Intern
+      LoginProfile: 
+        Password: xxxx # password removed
+        PasswordResetRequired: true # make this user to set a new password on next sign-in
+      Path: '/'
+      ManagedPolicyArns: # list of ARNs of IAM managed policies that you want to attach to the user
+        - arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess # provides read only access to all buckets via the AWS Management Console.
